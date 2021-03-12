@@ -9,7 +9,7 @@ const LogIn=(props)=>{
     return(
         <div className="row justify-content-center pt-5">
             <LogInCard  >
-            <LogInForm />
+                <LogInForm />
             </LogInCard>
         </div>
     )

@@ -7,22 +7,23 @@ const Input=(props)=>{
             inputElement=<input ref={props.refrence}  className={`form-control ${props.error&&"bg-danger text-white"}`} {...props.elementConfig} />
             break
         case ('text area'):
-            inputElement=<textarea rows="5" className="form-control" {...props.elementConfig} />
+            inputElement=<textarea ref={props.refrence} rows="2"  className="form-control" {...props.elementConfig} />
             break
+        
         case ('select'):
-            inputElement=<select onChange={props.changed} value={props.value} className={`form-control ${props.touched&&!props.valid&&"bg-danger text-white"}`} >
+            inputElement=<select ref={props.refrence} {...props.elementConfig}  className={`form-control ${props.error&&"bg-danger text-white"}`} >
                 <option key="tittle" value="">---{props.label}----</option>
-                {props.elementConfig.options.map((option)=>{
-                    return(<option key={option.value} value={option.value}>{option.label}</option>)
+                {props.options.map((option)=>{
+                    return(<option key={option.value} value={option.value} className="text-capitalize text-center">{option.label}</option>)
                 })}
             </select>
             break
         case ('multi input'):
             inputElement=<div>{
-                            props.values.map((value,index)=>{
+                            props.inputs.map((input,index)=>{
                                 return(
-                                <Fragment key={value} >
-                                <input   value={value} className={`mr-1 `} {...props.elementConfig} /><label className="mr-2 text-capitalize text-white">{value}</label>
+                                <Fragment key={input.value} >
+                                <label className="mr-2 text-capitalize text-white"><input ref={props.refrence}   value={input.value} className={`ml-0 mr-1 position-static form-check-input `} {...props.elementConfig} />{input.label}</label>
                                 </Fragment>)
                             })}<br></br>
                           </div>

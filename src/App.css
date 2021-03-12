@@ -1,7 +1,10 @@
-.header{
+header{
   background-color:#45404e;
   height: 56px;
   padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 
 }
 
@@ -12,4 +15,50 @@
 
 .login-card{
   background-color :#45404e;
+}
+.page-block{
+
+  top: 65px;
+  height: 800px;
+  left:0
+}
+.navigation-block{
+  background-color:#45404e;
+  z-index: 1;
+  position: fixed;
+  top: 65px;
+  height: 100%;
+}
+.navigation{
+  padding-top: 1rem;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.navigation li{
+text-decoration: none;
+padding: 0.5rem 0.2rem;
+cursor: pointer;
+}
+
+.navigation a{
+  text-decoration: none;
+  color: white;
+}
+.navigation li:hover{
+  background-color: white;
+}
+.navigation li:hover a {
+  
+  color: #45404e;
+}
+
+.navigation .active{
+  color: yellowgreen;
+}
+
+@media (min-width: 768px){
+  .page-block{
+    left: 16.60%;
+  }
 }

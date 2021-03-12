@@ -3,25 +3,33 @@ import './App.css';
 import LogIn from './pages/LogIn';
 import { Switch,BrowserRouter as Router,Route, Redirect } from "react-router-dom";
 import Register from './pages/Register';
+import { connect } from 'react-redux';
+import NonAuthorizedLayout from './layout/NonAuthorizedLayout';
+import AuthorizedLayout from './layout/AuthorizedLayout';
+import AuthorizedRoutes from './routes/AuthorizedRoutes';
+import NonAuthorizedRoutes from './routes/NonAuthorizedRoutes';
 
-function App() {
+function App(props) {
+  console.log("app.js re-render")
   return (
-    <div className="container-fluid">
-      <header >
-        <div className="header">
-          <h4 className="text-center text-bold  text-white">Home Appliances Services</h4>
-        </div>
-        
-      </header>
-      <Router>
-        <Switch>
-          <Route path="/" exact><Redirect to="/login" /></Route>
-          <Route path="/login"><LogIn /></Route>
-          <Route path="/register"><Register /></Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+    
+      
+        {!props.authorized&&<NonAuthorizedLayout>
+          <NonAuthorizedRoutes />
+        </NonAuthorizedLayout>}{
+          props.authorized&&
+          <AuthorizedLayout>
+          <AuthorizedRoutes />
+          </AuthorizedLayout>
+        }
+      
+    </Router>
   );
 }
-
-export default App;
+const mapStateToProps=state=>{
+  return{
+    authorized:state.user.authorized
+  }
+}
+export default connect(mapStateToProps)(App);

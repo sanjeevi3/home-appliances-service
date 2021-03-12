@@ -1,11 +1,13 @@
 import { Fragment,useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-
+import actions from "../../store/actions"
 import {useForm} from 'react-hook-form'
+import { connect } from "react-redux";
+import { useHistory } from "react-router";
 
 const LogInForm=(props)=>{
-
+    const history=useHistory()
     const {register,handleSubmit,watch,errors} = useForm()
     const inputs = [
         {
@@ -37,6 +39,8 @@ const LogInForm=(props)=>{
     ]
     const logInHandler=(data)=>{
         console.log(data)
+        history.replace("/dashboard");
+        props.setUser();
     }
     return(
         <form onSubmit={handleSubmit(logInHandler)}>
@@ -64,4 +68,9 @@ const LogInForm=(props)=>{
     )
 }
 
-export default LogInForm;
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        setUser:()=>dispatch(actions.user.setUser())
+    }
+}
+export default connect(null,mapDispatchToProps)(LogInForm);

@@ -1,15 +1,17 @@
 import { Fragment,useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-
+import actions from "../../store/actions"
 import {useForm} from 'react-hook-form'
+import { useHistory } from "react-router";
 
 const RegisterForm=(props)=>{
-    
+    const history=useHistory();
     const {register,handleSubmit,watch,errors} = useForm()
     const password=watch("password")
+    const registerAsWorker=watch("worker")
     console.log(password)
-    const inputs = [
+    let inputs = [
             {
                 elementType:"input",
                 elementConfig:{
@@ -136,7 +138,10 @@ const RegisterForm=(props)=>{
                     name:"gender",
                     
                 },
-                values:["male","female","others"],
+                inputs:[
+                    {value:"male",label:"Male"},
+                    {value:"female",label:"Female"},
+                    {value:"others",label:"Others"}],
                 label:"Gender",
                 validation:{
                     required:"The Gender is Required"
@@ -154,7 +159,7 @@ const RegisterForm=(props)=>{
                 validation:{
                     required:"The Password Field is Required",
                     pattern:{
-                        value:/(?=.*[a-z])(?=.*[A-z])(?=.*[`~!@#$%^&*()-_=+[]{}|\;:'",.<>?\/]).{8,32}/,
+                        value:"",
                         message:"Enter Correct Email Format"
                     }
                 },
@@ -173,11 +178,120 @@ const RegisterForm=(props)=>{
                     validate:value=>value===password || "Password and Confirm Password Doesn't Match"
                 },
                
-            }
+            },
+            {
+                elementType:"select",
+                elementConfig:{
+                   
+                    name:"state",
+                    
+                },
+                label:"State",
+                options:[
+                    {value:"tamilnadu",label:"Tamilnadu"}
+                ],
+                validation:{
+                    required:"Select Any One State",
+    
+                },
+               
+            },
+            {
+                elementType:"select",
+                elementConfig:{
+                   
+                    name:"district",
+                    
+                },
+                label:"District",
+                options:[
+                    {value:"tirunelveli",label:"Tirunelveli"}
+                ],
+                validation:{
+                    required:"Select Any One District",
+    
+                },
+               
+            },
+            {
+                elementType:"select",
+                elementConfig:{
+                   
+                    name:"place",
+                    
+                },
+                label:"Place",
+                options:[
+                    {value:"palayamkottai",label:"Palayamkottai"}
+                ],
+                validation:{
+                    required:"Select Any One place",
+    
+                },
+               
+            },
+            {
+                elementType:"text area",
+                elementConfig:{
+                    placeholder:"Address",
+                    name:"address",
+                    
+                },
+                label:"Address",
+                
+                validation:{
+                    required:"Enter the Address",
+    
+                },
+               
+            },
+            {
+                elementType:"multi input",
+                elementConfig:{
+                   
+                    name:"worker",
+                    type:"checkbox"
+                },
+                label:"",
+                inputs:[
+                    {value:"yes",label:"Register As Worker"}
+                ],
+                validation:{
+                    required:false
+    
+                },
+               
+            },
+
         ]
+        if(registerAsWorker){
+            inputs=[
+                ...inputs,
+                {
+                    elementType:"multi input",
+                    elementConfig:{
+                        type:"checkbox",
+                        name:"sevice",
+                        
+                    },
+                    inputs:[
+                        {value:"plumber",label:"Plumber"},
+                        {value:"AC mechanic",label:"AC Mechanic"},
+                        {value:"refregirator mechanic",label:"Refregirator Mechanic"}
+                    ],
+                    label:"Gender",
+                    validation:{
+                        required:"The Gender is Required"
+                    },
+                    
+                }
+            ]
+        }
     
     const RegisterHandler=(data)=>{
         console.log(data)
+        history.replace("/dashboard")
+        props.setUser()
     }
     return(
         <form onSubmit={handleSubmit(RegisterHandler)}>
@@ -194,6 +308,8 @@ const RegisterForm=(props)=>{
                             required={input.validation.required}
                             error={errors[input.elementConfig.name]}
                             values={input.values}
+                            options={input.options}
+                            inputs={input.inputs}
                         />
                     </div>
                                     
@@ -208,5 +324,9 @@ const RegisterForm=(props)=>{
         </form>
     )
 }
-
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        setUser:()=>dispatch(actions.user.setUser())
+    }
+}
 export default RegisterForm;
