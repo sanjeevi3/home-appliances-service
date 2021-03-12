@@ -49,7 +49,7 @@ const Navigation=(props)=>{
                   navigationItems.map(navigationItem=>{
                     return(
                         <Fragment key={navigationItem.path}>
-                      <NavigationItem navigationItem={navigationItem} /> 
+                      <NavigationItem removeSideDrawer={props.removeSideDrawer} navigationItem={navigationItem} /> 
                       </Fragment>
                     )
                   })
