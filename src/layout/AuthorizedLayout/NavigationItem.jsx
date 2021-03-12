@@ -1,9 +1,11 @@
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 
 const NavigationItem=props=>{
+    const linkRef=useRef(null)
     return(
-        <li key={props.navigationItem.path}>
-        <NavLink  to={props.navigationItem.path} >{props.navigationItem.name}</NavLink>
+        <li onClick={()=>{linkRef.current.click()}} key={props.navigationItem.path}>
+        <NavLink ref={linkRef} onClick={props.removeSideDrawer}  to={props.navigationItem.path} >{props.navigationItem.name}</NavLink>
       </li>
     )
 }
