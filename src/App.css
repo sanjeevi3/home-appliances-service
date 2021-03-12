@@ -57,8 +57,70 @@ cursor: pointer;
   color: yellowgreen;
 }
 
+
+.back-drop{
+    
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */ /* Location of the box */
+  left: 0;
+  top: 56px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4);
+}
 @media (min-width: 768px){
   .page-block{
     left: 16.60%;
   }
+}
+@media (max-width: 768px){
+  .navigation-block.opened{
+    transform: translateX(0);
+    }
+    .navigation-block.closed{
+      transform: translateX(-100%);
+      }
+      .navigation-block{
+        transition: transform 0.3s ease-out;
+        top:56px;
+      }
+}
+.side-drawer{
+  position: fixed;
+  width: 280px;
+  max-width: 70%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  
+}
+.side-drawer
+.side-drawer.close{
+  transform: translateX(-100%);
+}
+.side-drawer .logo{
+  height: 11%;
+}
+@media(min-width:500px){
+  .side-drawer{
+    display: none;
+  }
+  
+}
+/*DrawerToggle*/
+.drawer-toggle{
+  max-width: 13%;
+    margin-top: 5px;
+    flex: 13%;
+}
+.drawer-toggle div{
+  height: 3px;
+  width: 90%;
+  background-color: white;
 }
