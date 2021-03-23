@@ -279,7 +279,7 @@ const RegisterForm=(props)=>{
                         {value:"AC mechanic",label:"AC Mechanic"},
                         {value:"refregirator mechanic",label:"Refregirator Mechanic"}
                     ],
-                    label:"Gender",
+                    label:"Worker Type",
                     validation:{
                         required:"The Gender is Required"
                     },
@@ -324,9 +324,5 @@ const RegisterForm=(props)=>{
         </form>
     )
 }
-const mapDispatchToProps=(dispatch)=>{
-    return{
-        setUser:()=>dispatch(actions.user.setUser())
-    }
-}
+
 export default RegisterForm;

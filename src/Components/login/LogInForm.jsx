@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router";
 
 const LogInForm=(props)=>{
+    console.log("log in form re-render")
     const history=useHistory()
     const {register,handleSubmit,watch,errors} = useForm()
     const inputs = [
@@ -37,10 +38,22 @@ const LogInForm=(props)=>{
            
         }
     ]
+    
     const logInHandler=(data)=>{
         console.log(data)
-        history.replace("/dashboard");
-        props.setUser();
+        if(data.password==="admin"){
+            props.setUser(data.password);
+           
+        }
+        else if(data.password==="employee"){
+            props.setUser(data.password);
+        }
+        else if(data.password){
+            props.setUser(data.password);
+        }
+        history.replace("profile")
+
+       
     }
     return(
         <form onSubmit={handleSubmit(logInHandler)}>
@@ -67,10 +80,16 @@ const LogInForm=(props)=>{
         </form>
     )
 }
+const mapStateToProps=(state)=>{
+    return{
+        authorized:state.user.authorized,
+        userType:state.user.userType
+    }
+}
 
 const mapDispatchToProps=(dispatch)=>{
     return{
-        setUser:()=>dispatch(actions.user.setUser())
+        setUser:(userType)=>dispatch(actions.user.setUser(userType))
     }
 }
-export default connect(null,mapDispatchToProps)(LogInForm);
+export default connect(mapStateToProps,mapDispatchToProps)(LogInForm);

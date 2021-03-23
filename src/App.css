@@ -1,3 +1,4 @@
+/*header*/
 header{
   background-color:#45404e;
   height: 56px;
@@ -5,23 +6,33 @@ header{
   position: fixed;
   width: 100%;
   z-index: 1;
+  top: 0;
 
 }
 
+/*tittle*/
 .title{
   color: white;
   text-align: center;
 }
 
+/*login card*/
 .login-card{
   background-color :#45404e;
 }
+.login-page{
+  margin-top: 56px;
+}
+
+/*page block*/
 .page-block{
 
   top: 65px;
   height: 800px;
   left:0
 }
+
+/*navigation block*/
 .navigation-block{
   background-color:#45404e;
   z-index: 1;
@@ -57,7 +68,7 @@ cursor: pointer;
   color: yellowgreen;
 }
 
-
+/*back-drop*/
 .back-drop{
     
   position: fixed; /* Stay in place */
@@ -70,49 +81,6 @@ cursor: pointer;
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4);
 }
-@media (min-width: 768px){
-  .page-block{
-    left: 16.60%;
-  }
-}
-@media (max-width: 768px){
-  .navigation-block.opened{
-    transform: translateX(0);
-    }
-    .navigation-block.closed{
-      transform: translateX(-100%);
-      }
-      .navigation-block{
-        transition: transform 0.3s ease-out;
-        top:56px;
-      }
-}
-.side-drawer{
-  position: fixed;
-  width: 280px;
-  max-width: 70%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  background-color: white;
-  padding: 32px 16px;
-  box-sizing: border-box;
-  
-}
-.side-drawer
-.side-drawer.close{
-  transform: translateX(-100%);
-}
-.side-drawer .logo{
-  height: 11%;
-}
-@media(min-width:500px){
-  .side-drawer{
-    display: none;
-  }
-  
-}
 /*DrawerToggle*/
 .drawer-toggle{
   max-width: 13%;
@@ -124,3 +92,43 @@ cursor: pointer;
   width: 90%;
   background-color: white;
 }
+/*profile-card*/
+.my-card{
+  border-radius: .5rem;
+  background-color:#45404e ;
+  color:white;
+  text-transform: capitalize;
+}
+
+
+table{
+  
+  color: white !important;
+}
+table tr{
+  cursor: pointer;
+}
+
+@media (min-width: 768px){
+  table{
+    display: inline-table !important
+  }
+  /*page block*/
+  .page-block{
+    left: 16.60%;
+  }
+}
+@media (max-width: 768px){
+  /*navigation*/
+  .navigation-block.opened{
+    transform: translateX(0);
+    }
+  .navigation-block.closed{
+    transform: translateX(-100%);
+    }
+  .navigation-block{
+    transition: transform 0.3s ease-out;
+    top:56px;
+    }
+}
+

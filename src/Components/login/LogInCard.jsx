@@ -3,6 +3,7 @@ import LogInForm from "./LogInForm";
 
 
 const LogInCard=(props)=>{
+    console.log("login card render")
     return(
         <div className="col-md-8 col-11 card login-card">
                 <div className="row ">
